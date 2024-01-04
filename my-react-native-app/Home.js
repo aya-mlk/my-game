@@ -17,6 +17,10 @@ function Home() {
                       { image: require('./assets/football.png'), title: "football" }]
 
   const adventureClick = () => {
+    navigation.navigate('Levels');
+  }
+
+  const project = () => {
     navigation.navigate('CreeProject');
   }
                       
@@ -36,21 +40,21 @@ function Home() {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             categories.map(({title, image}, index) => (
-              <Link href="/adventures" key={index} style={index != 0 ? styles.scrollViewElement : {}}>
+                <Pressable key={index} onPress={adventureClick} style={index != 0 ? styles.scrollViewElement : {}}>
                 <View style={styles.categoryContainer}>
-                <Image source={image} style={styles.image} />
-                <Text style={styles.scrollText}>
-                  {title}
-                </Text>
+                  <Image source={image} style={styles.image} />
+                  <Text style={styles.scrollText}>
+                    {title}
+                  </Text>
                 </View>
-              </Link>
+              </Pressable>
             ))
           }
         </ScrollView>
       </View>
 
       <View style={styles.btnContainer}>
-        <Pressable style={styles.btn} onPress={adventureClick}>
+        <Pressable style={styles.btn} onPress={project}>
           <Text>Mes projets</Text>
         </Pressable>
         <Pressable style={styles.btn}>
