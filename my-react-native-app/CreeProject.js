@@ -1,15 +1,25 @@
 import React from 'react';
-import { View, ImageBackground, Text, StyleSheet } from 'react-native';
+import { View, ImageBackground, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
-const CreeProject = () => {
+const CreeProject = ({ navigation }) => {
+  const navigateToNewPage = () => {
+    navigation.navigate('NewProject');  // Remplacez 'NewPage' par le nom de votre nouvelle page
+  };
+
   return (
     <ImageBackground
       source={require('./assets/image-removebg-preview.png')}
       style={styles.background}
     >
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.back}>
+        <FontAwesome5 name="arrow-left" size={24} color="#fff" />
+      </TouchableOpacity>
       <Text style={styles.textmesproject}>Mes projets </Text>
       <View style={styles.carre}>
-        <Text style={styles.plusSign}>+</Text>
+        <TouchableOpacity onPress={navigateToNewPage}>
+          <Text style={styles.plusSign}>+</Text>
+        </TouchableOpacity>
       </View>
       <Text style={styles.textnouveauproject}>Crée un nouveau projet</Text>
     </ImageBackground>
@@ -25,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     color: '#fff',
-    marginTop: 20, 
+    marginTop: 20,
     marginLeft: 350,
   },
   carre: {
@@ -42,13 +52,18 @@ const styles = StyleSheet.create({
   plusSign: {
     fontSize: 150,
     color: '#fff',
-    marginTop: -20, 
+    marginTop: -20,
   },
   textnouveauproject: {
     fontSize: 15,
     color: '#fff',
-    marginTop: 10, 
+    marginTop: 10,
     marginLeft: 90,
+  },
+  back: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
   },
 });
 
