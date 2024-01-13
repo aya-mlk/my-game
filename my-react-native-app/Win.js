@@ -6,7 +6,7 @@ const Win= (navigation) => {
 
     return (
         <ImageBackground
-          source={require('./assets/marcel-hampel-grassland-2 1.png')}
+          source={require('./assets/background_anim.png')}
           style={styles.background}
         >
 

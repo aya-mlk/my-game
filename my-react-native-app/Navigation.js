@@ -5,6 +5,8 @@ import Acceuil from './Acceuil';
 import CreeProject from './CreeProject';
 import Levels from './Levels';
 import NewProject from './NewProject';
+import CreeProject1 from './CreeProject1';
+import Win from './Win';
 
 const Stack = createStackNavigator();
 
