@@ -5,7 +5,6 @@ import Acceuil from './Acceuil';
 import CreeProject from './CreeProject';
 import Levels from './Levels';
 import NewProject from './NewProject';
-import CreeProject1 from './CreeProject1';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +17,7 @@ const Navigation = () => {
       <Stack.Screen name="CreeProject1" component={CreeProject1} />
       <Stack.Screen name="Levels" component={Levels} />
       <Stack.Screen name="NewProject" component={NewProject} />
+      <Stack.Screen name="Win" component={Win} />
     </Stack.Navigator>
   );
 };  

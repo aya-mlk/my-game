@@ -23,6 +23,10 @@ function Home() {
   const project = () => {
     navigation.navigate('CreeProject');
   }
+
+  const tutoriels = () => {
+    navigation.navigate('Win');
+  }
                       
   return (
     <ImageBackground
@@ -57,7 +61,7 @@ function Home() {
         <Pressable style={styles.btn} onPress={project}>
           <Text>Mes projets</Text>
         </Pressable>
-        <Pressable style={styles.btn}>
+        <Pressable style={styles.btn} onPress={tutoriels}>
           <Text>Tutoriels</Text>
         </Pressable>
       </View>
