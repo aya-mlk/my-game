@@ -4,7 +4,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 const CreeProject = ({ navigation }) => {
   const navigateToNewPage = () => {
-    navigation.navigate('NewProject');  // Remplacez 'NewPage' par le nom de votre nouvelle page
+    navigation.navigate('NewProject');  
   };
 
   return (

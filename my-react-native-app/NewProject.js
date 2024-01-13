@@ -1,22 +1,32 @@
 import React, { useState } from 'react';
 import { View, ImageBackground, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import ModalSelector from 'react-native-modal-selector';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 const NewProject = () => {
-  const [projetData, setProjetData] = useState({ nomProjet: '', categorie: '' });
+  const [projetData, setProjetData] = useState({ nomProjet: '', categorie: 'football' });
+  const [selectedCategory, setSelectedCategory] = useState('football'); // Manage selected category in state
   const navigation = useNavigation();
 
   const handleInputChange = (text, fieldName) => {
     setProjetData(prevState => ({ ...prevState, [fieldName]: text }));
   };
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category); // Update selected category in state
+    setProjetData(prevState => ({ ...prevState, categorie: category }));
+  };
+
   const handleSubmit = () => {
-    // Ajoutez des validations si nécessaire
     if (projetData.nomProjet && projetData.categorie) {
       console.log("Nom du projet :", projetData.nomProjet);
       console.log("Catégorie :", projetData.categorie);
-      // Ajoutez ici la logique pour traiter la soumission du formulaire
+  
+      navigation.navigate('CreeProject1', {
+        nomProjet: projetData.nomProjet,
+        categorie: projetData.categorie,
+      });
     } else {
       console.warn("Veuillez remplir tous les champs.");
     }
@@ -25,6 +35,13 @@ const NewProject = () => {
   const navigateBack = () => {
     navigation.goBack();
   };
+
+  const data = [
+    { key: 0, label: 'Football' },
+    { key: 1, label: 'Aventure' },
+    { key: 2, label: 'Space' },
+    { key: 3, label: 'Mathematique' },
+  ];
 
   return (
     <ImageBackground
@@ -46,11 +63,11 @@ const NewProject = () => {
       />
 
       <Text style={styles.subtitle}>Catégorie</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Catégorie"
-        value={projetData.categorie}
-        onChangeText={(text) => handleInputChange(text, 'categorie')}
+      <ModalSelector
+        data={data}
+        initValue={selectedCategory} // Use selected category from state
+        onChange={(option) => handleCategoryChange(option.label)}
+        style={styles.picker}
       />
 
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
@@ -93,6 +110,16 @@ const styles = StyleSheet.create({
     padding: 10,
     marginLeft: 250,
     width: 300,
+    borderRadius: 5,
+    color: '#fff', 
+  },
+  picker: {
+    height: 40,
+    width: 300,
+    margin: 15,
+    marginLeft: 250,
+    color: 'gray',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: 5,
   },
   submitButton: {
