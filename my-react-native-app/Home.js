@@ -25,7 +25,7 @@ function Home() {
   }
 
   const tutoriels = () => {
-    navigation.navigate('Win');
+    navigation.navigate('Lose');
   }
                       
   return (

@@ -3,7 +3,7 @@ import { View, Image, ImageBackground,Text, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
-const Win= (navigation) => {
+const Lose= (navigation) => {
 
 
     return (
@@ -12,8 +12,8 @@ const Win= (navigation) => {
           style={styles.background}
         >
             <Text style={styles.title}>VOUS AVEZ</Text>
-            <Text style={styles.suite}>GAGNER !!</Text>
-            <Image source={require('./assets/stars.png')} style={styles.stars} />
+            <Text style={styles.suite}>RATER !!</Text>
+            <Image source={require('./assets/group.png')} style={styles.stars} />
             <View style={styles.container}>
                 <Image source={require('./assets/blocks.png')} style={styles.image} />
                 <Image source={require('./assets/again.png')} style={styles.image} />
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
         marginHorizontal: 10, // Marge horizontale entre les images
       },
 });
-export default Win;
+export default Lose;

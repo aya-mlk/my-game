@@ -11,24 +11,26 @@ const Levels = ({ navigation }) => {
 
   const renderLevelBox = (level, isLocked) => (
     <TouchableOpacity
-      key={level}
-      style={[
-        styles.levelBox,
-        { backgroundColor: '#E0AAFF', marginBottom: level % 4 === 0 ? 0 : 10 },
-      ]}
-      onPress={() => unlockLevel(level)}
-      disabled={isLocked}
-    >
-      {isLocked && (
-        <>
-          <Text style={styles.lockedLevelText}>{level}</Text>
-          <Image source={require('./assets/locked.png')} style={styles.lockIcon} />
-        </>
-      )}
-      {!isLocked && (
+    key={level}
+    style={[
+      styles.levelBox,
+      { backgroundColor: '#E0AAFF', marginBottom: level % 4 === 0 ? 0 : 10 },
+    ]}
+    onPress={() => isLocked ? null : unlockLevel(level)}  // Modifier ici
+    disabled={isLocked}
+  >
+    {isLocked && (
+      <>
+        <Text style={styles.lockedLevelText}>{level}</Text>
+        <Image source={require('./assets/locked.png')} style={styles.lockIcon} />
+      </>
+    )}
+    {!isLocked && (
+      <TouchableOpacity onPress={() => navigation.navigate("Game1")}>
         <Text style={styles.levelText}>{level}</Text>
-      )}
-    </TouchableOpacity>
+      </TouchableOpacity>
+    )}
+  </TouchableOpacity>
   );
 
   return (

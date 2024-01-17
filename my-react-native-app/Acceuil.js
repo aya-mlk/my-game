@@ -5,7 +5,7 @@ const Acceuil = ({ navigation }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.replace('Home');
-    }, 10000); 
+    }, 3000); 
 
     return () => clearTimeout(timeout);
   }, [navigation]);

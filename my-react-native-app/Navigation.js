@@ -7,6 +7,8 @@ import Levels from './Levels';
 import NewProject from './NewProject';
 import CreeProject1 from './CreeProject1';
 import Win from './Win';
+import Lose from './Lose';
+import Game1 from './Game1';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +22,9 @@ const Navigation = () => {
       <Stack.Screen name="Levels" component={Levels} />
       <Stack.Screen name="NewProject" component={NewProject} />
       <Stack.Screen name="Win" component={Win} />
+      <Stack.Screen name="Lose" component={Lose} />
+      <Stack.Screen name="Game1" component={Game1} />
+
     </Stack.Navigator>
   );
 };  
