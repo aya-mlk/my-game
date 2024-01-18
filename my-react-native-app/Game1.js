@@ -1,11 +1,14 @@
 
-import React, { useEffect, useRef } from 'react';
-import { View, Image, ImageBackground,Text, StyleSheet, FlatList, Pressable } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
+import React, { useRef, useState } from 'react';
+import { View, ImageBackground,Text, StyleSheet, FlatList, Pressable, Image, StatusBar } from 'react-native';
 import { Engine } from 'matter-js';
-import { Svg, Path } from 'react-native-svg';
 import { Start, End, TurnLeft, TurnRight, Walk, Attack } from './icons';
+import Draggable from './components/Draggable';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Player from './components/Player';
+import { GameEngine } from "react-native-game-engine";
+import { Finger } from "./utils/renderers";
+import { MoveFinger } from "./utils/systems"
 
 const FlatListItem = (text) => {
     return (
@@ -40,31 +43,65 @@ const vectors = [{id: 1, image: "start"},
 
 const Game1= ({navigation}) => {
 
+    const [x, setX] = useState(178)
+    const [y, setY] = useState(10)
+
+    const moveUp = () => {
+            setY(y + 20)
+    }
+
+    const moveDown = () => {
+            setY(y - 20)
+    }
+
+    const moveLeft = () => {
+        setX(x - 30)
+    }
+
+    const moveRight = () => {
+
+    }
+
+    const mvmnts = [{item: <Start/>, event: ""},
+                {item: <Walk/>, event: moveUp},
+                {item: <TurnLeft/>, event: moveLeft}, 
+                {item: <TurnRight/>, event: moveRight}]
+
     const scene = useRef()
     const engine = useRef(Engine.create())
 
     return (
         <ImageBackground
-          source={require('./assets/img.png')}
+          source={require('./assets/map.jpg')}
           style={styles.background}
+          resizeMode='cover'
         >
+            <GestureHandlerRootView style={{flex: 1}}>
 
-            <View style={{flex: 1, justifyContent: "space-between", flexDirection: "row"}}>
-                
-                <View style={styles.sideMenu}>
-                    <Start/>
-                    <Walk/>
-                    <TurnLeft/>
-                    <TurnRight/>
-                    <End/>
+                <View style={{flex: 1, justifyContent: "space-between", flexDirection: "row"}}>
+                    
+                    <View style={styles.sideMenu}>
+                        {
+                            mvmnts.map(({item, event}, index) => (
+                                <Pressable onPress={event} key={index}>
+                                        {item}
+                                </Pressable>
+                            ))
+                        }
+                    </View>
+
+                    <View style={{flex:1, justifyContent: "flex-end", alignItems: "center", paddingLeft: 20}} ref={scene}>
+                        <Image style={{ position: "absolute", left: x, bottom: y }} source={require("./assets/player/player_facing_up/1.png")} />
+                    </View>
+
+                    <Pressable onPress={() => navigation.navigate("Win")} style={{alignSelf: "flex-end", padding: 15}}>
+                        <Attack/>
+                    </Pressable>
+
                 </View>
+                
+            </GestureHandlerRootView>
 
-                <Pressable onPress={() => navigation.navigate("Win")} style={{alignSelf: "flex-end", padding: 15}}>
-                    <Attack/>
-                </Pressable>
-
-            </View>
-        
         </ImageBackground>
         
     );
@@ -75,7 +112,6 @@ const Game1= ({navigation}) => {
 const styles = StyleSheet.create({
     background: {
       flex: 1,
-      resizeMode: 'cover',
     },
     title: {
         textAlign: 'center',
@@ -111,6 +147,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         rowGap: 10,
         padding: 15
+    },
+    topLayer: {
+        zIndex: 99
     }
 });    
 export default Game1;

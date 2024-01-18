@@ -37,7 +37,7 @@ const Levels = ({ navigation }) => {
     <ImageBackground source={require('./assets/adventure_screen.png')} style={styles.background}>
      <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image source={require('./assets/back.png')} style={styles.back} />
+          <Image source={require('./assets/back.png')} style={styles.back} />
         </TouchableOpacity>
         <Text style={styles.title}>Aventure</Text>
   

@@ -9,6 +9,7 @@ import CreeProject1 from './CreeProject1';
 import Win from './Win';
 import Lose from './Lose';
 import Game1 from './Game1';
+import Game from './Game';
 
 const Stack = createStackNavigator();
 
@@ -24,7 +25,7 @@ const Navigation = () => {
       <Stack.Screen name="Win" component={Win} />
       <Stack.Screen name="Lose" component={Lose} />
       <Stack.Screen name="Game1" component={Game1} />
-
+      <Stack.Screen name='Game' component={Game} />
     </Stack.Navigator>
   );
 };  
