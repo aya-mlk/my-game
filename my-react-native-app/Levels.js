@@ -4,6 +4,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const Levels = ({ navigation }) => {
   const [currentLevel, setCurrentLevel] = useState(1);
 
+
+  
   const unlockLevel = (level) => {
     // Logique pour débloquer le niveau ici (si nécessaire)
     setCurrentLevel(level);

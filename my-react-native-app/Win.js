@@ -2,23 +2,24 @@ import React, { useEffect } from 'react';
 import { View, Image, ImageBackground,Text, StyleSheet } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import { Pressable } from 'react-native';
 
-const Win= (navigation) => {
+const Win= ({navigation}) => {
 
 
     return (
         <ImageBackground
-          source={require('./assets/backg.jpg')}
+          source={require('./assets/map.jpg')}
           style={styles.background}
         >
             <Text style={styles.title}>VOUS AVEZ</Text>
             <Text style={styles.suite}>GAGNER !!</Text>
             <Image source={require('./assets/stars.png')} style={styles.stars} />
             <View style={styles.container}>
-                <Image source={require('./assets/blocks.png')} style={styles.image} />
-                <Image source={require('./assets/again.png')} style={styles.image} />
-                 <Image source={require('./assets/play.png')} style={styles.image} />
-    </View>
+                <Pressable onPress={() => navigation.navigate("Levels")}><Image source={require('./assets/blocks.png')} style={styles.image} /></Pressable>
+                <Pressable onPress={() => navigation.navigate("Game1")}><Image source={require('./assets/again.png')} style={styles.image} /></Pressable>
+                <Pressable onPress={() => navigation.navigate("Levels")}><Image source={require('./assets/play.png')} style={styles.image} /></Pressable>
+            </View>
         </ImageBackground>
         
     );
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         marginTop: 50,
-        fontFamily: 'Inter',
       },
     suite: {
         textAlign: 'center',

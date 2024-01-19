@@ -5,9 +5,12 @@ import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
 
 const App = () => {
+
   return (
     <NavigationContainer>
-      <Navigation />
+      
+        <Navigation />
+      
     </NavigationContainer>
   );
 };
